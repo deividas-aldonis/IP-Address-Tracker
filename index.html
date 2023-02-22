@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+      crossorigin=""
+    />
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+      integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+      crossorigin=""
+    ></script>
+
+    <title>Frontend Mentor | IP Address Tracker</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <main class="container">
+      <div class="header-bg"></div>
+
+      <div class="content">
+        <h1 class="header">IP Address Tracker</h1>
+
+        <form class="form">
+          <input
+            class="form-input"
+            type="text"
+            placeholder="Search for any IP address"
+          />
+          <button class="submit-btn" type="submit">
+            <div class="arrow-icon"></div>
+          </button>
+        </form>
+
+        <ul class="data">
+          <li class="data-item">
+            <p class="data-subtitle">IP ADDRESS</p>
+            <b class="data-ip">192.212.174.101</b>
+          </li>
+          <li class="data-item">
+            <p class="data-subtitle">LOCATION</p>
+            <b class="data-location">Brooklyn, NY 10001</b>
+          </li>
+          <li class="data-item">
+            <p class="data-subtitle">TIMEZONE</p>
+            <b class="data-timezone">UTC -05:00</b>
+          </li>
+          <li class="data-item">
+            <p class="data-subtitle">ISP</p>
+            <b class="data-isp">SpaceX Starlink</b>
+          </li>
+        </ul>
+      </div>
+
+      <div id="map"></div>
+    </main>
+  </body>
+</html>

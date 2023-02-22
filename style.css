@@ -1,0 +1,145 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: "R";
+  src: url("./fonts/Rubik-Regular.woff2");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "R";
+  src: url("./fonts/Rubik-Medium.woff2");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "R";
+  src: url("./fonts/Rubik-Bold.woff2");
+  font-weight: 700;
+}
+
+body {
+  font-family: "R";
+}
+
+.container {
+  position: relative;
+}
+
+.header-bg {
+  background-image: url(./images/pattern-bg-mobile.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  height: 35vh;
+  height: 35svh;
+}
+
+#map {
+  height: 65vh;
+  height: 65svh;
+}
+
+.content {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.content > * {
+  width: 90%;
+  margin: auto;
+}
+
+.header {
+  margin: 30px auto;
+  color: #fff;
+  font-weight: 500;
+  font-size: 30px;
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  margin-bottom: 25px;
+  background-color: red;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.form-input {
+  width: calc(100% - 70px);
+  padding: 0 30px;
+
+  color: hsl(0, 0%, 17%);
+  font-size: 18px;
+  font-family: inherit;
+  font-weight: 400;
+  border: none;
+  outline-color: transparent;
+}
+
+.submit-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 70px;
+  height: 60px;
+  border: none;
+  background-color: black;
+  cursor: pointer;
+}
+
+.arrow-icon {
+  background-image: url(./images/icon-arrow.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  width: 11px;
+  height: 16px;
+}
+
+.data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+
+  padding: 25px 0;
+  background-color: #fff;
+
+  opacity: 1;
+  text-align: center;
+  border-radius: 16px;
+  list-style-type: none;
+}
+
+.data-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.data-subtitle {
+  color: hsl(0, 0%, 59%);
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.data-ip,
+.data-location,
+.data-timezone,
+.data-isp {
+  color: hsl(0, 0%, 17%);
+  font-size: 20px;
+  font-weight: 700;
+}
