@@ -4,6 +4,7 @@ const ipEl = document.querySelector(".data-ip");
 const ispEl = document.querySelector(".data-isp");
 const locationEl = document.querySelector(".data-location");
 const timezoneEl = document.querySelector(".data-timezone");
+const header = document.querySelector(".header");
 
 let map;
 let mapIcon = L.icon({
@@ -13,9 +14,8 @@ let mapIcon = L.icon({
 
 const mapDiv = document.getElementById("map");
 const data = document.querySelector(".data");
-const showBtn = document.querySelector(".show-data-btn");
-
 const content = document.querySelector(".content");
+const goUp = document.querySelector(".go-up");
 
 const adjustContentSize = () => {
   const contentHeight = content.offsetHeight - data.offsetHeight / 2;
@@ -23,24 +23,40 @@ const adjustContentSize = () => {
 };
 adjustContentSize();
 
-const displayData = (e) => {
-  if (!data.classList.contains("hide")) {
-    data.classList.add("hide");
-    showBtn.textContent = "show data";
-  } else {
-    data.classList.remove("hide");
-    showBtn.textContent = "hide data";
-  }
-};
-
 const resizeObserver = new ResizeObserver(() => {
   if (!map) return;
   map.invalidateSize();
 });
-
 resizeObserver.observe(mapDiv);
 
-showBtn.addEventListener("click", displayData);
+const headerObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    const intersecting = entry.isIntersecting;
+
+    if (intersecting && !goUp.classList.contains("hide")) {
+      goUp.classList.add("hide");
+    }
+  });
+});
+
+headerObserver.observe(header);
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    const intersecting = entry.isIntersecting;
+    if (intersecting) {
+      goUp.classList.remove("hide");
+    }
+  });
+});
+
+goUp.addEventListener("click", () => {
+  window.scroll({
+    top: 0,
+    left: 0,
+    behavior: "smooth",
+  });
+});
 
 const showOnMap = (lat, lon) => {
   if (!map) {
@@ -55,6 +71,8 @@ const showOnMap = (lat, lon) => {
     map.setView([lat, lon], 13);
     L.marker([lat, lon], { icon: mapIcon }).addTo(map);
   }
+
+  observer.observe(document.querySelector(".leaflet-control-attribution"));
 };
 
 const getCoords = async (userInput) => {
