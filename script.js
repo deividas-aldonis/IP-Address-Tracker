@@ -12,15 +12,23 @@ let mapIcon = L.icon({
 });
 
 const mapDiv = document.getElementById("map");
-const data = document.querySelector(".content");
+const data = document.querySelector(".data");
 const showBtn = document.querySelector(".show-data-btn");
 
+const content = document.querySelector(".content");
+
+const adjustContentSize = () => {
+  const contentHeight = content.offsetHeight - data.offsetHeight / 2;
+  console.log(contentHeight);
+};
+adjustContentSize();
+
 const displayData = (e) => {
-  if (!data.classList.contains("hide")) {
-    data.classList.add("hide");
+  if (!content.classList.contains("hide")) {
+    content.classList.add("hide");
     showBtn.textContent = "show data";
   } else {
-    data.classList.remove("hide");
+    content.classList.remove("hide");
     showBtn.textContent = "hide data";
   }
 };
