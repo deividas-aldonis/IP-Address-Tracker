@@ -49,18 +49,6 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-
-  opacity: 1;
-  visibility: visible;
-  overflow: visible;
-  transition: all 0.2s ease;
-}
-
-.content.hide {
-  visibility: hidden;
-  height: 0 !important;
-  opacity: 0;
-  transition: all 0.2s ease-out;
 }
 
 .content > * {
@@ -118,10 +106,6 @@ body {
 }
 
 .show-data-btn {
-  position: fixed;
-  bottom: 0;
-  z-index: 1000;
-
   width: 100%;
   background-color: #000;
   color: #fff;
@@ -155,7 +139,13 @@ body {
   text-align: center;
   border-radius: 16px;
   list-style-type: none;
+  transform: translateY(0px);
   transition: all 0.2s ease;
+}
+
+.data.hide {
+  opacity: 0;
+  transform: translateY(-20px);
 }
 
 .data-item {

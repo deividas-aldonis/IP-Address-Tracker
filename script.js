@@ -24,11 +24,11 @@ const adjustContentSize = () => {
 adjustContentSize();
 
 const displayData = (e) => {
-  if (!content.classList.contains("hide")) {
-    content.classList.add("hide");
+  if (!data.classList.contains("hide")) {
+    data.classList.add("hide");
     showBtn.textContent = "show data";
   } else {
-    content.classList.remove("hide");
+    data.classList.remove("hide");
     showBtn.textContent = "hide data";
   }
 };
