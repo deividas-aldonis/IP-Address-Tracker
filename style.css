@@ -20,34 +20,47 @@
   font-weight: 700;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   font-family: "R";
 }
 
 .container {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-.header-bg {
+#map {
+  height: 100%;
+}
+
+.content {
+  position: relative;
+  z-index: 10000;
+
   background-image: url(./images/pattern-bg-mobile.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 
-  height: 35vh;
-  height: 35svh;
+  height: 30%;
+  opacity: 1;
+  overflow: visible;
+  transition: all 0.2s ease;
+  visibility: visible;
 }
 
-#map {
-  height: 65vh;
-  height: 65svh;
-}
-
-.content {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
+.content.hide {
+  height: 0;
+  opacity: 0;
+  visibility: hidden;
+  /* overflow: hidden; */
 }
 
 .content > * {
@@ -66,7 +79,6 @@ body {
 .form {
   display: flex;
   margin-bottom: 25px;
-  background-color: red;
   border-radius: 16px;
   overflow: hidden;
 }
@@ -105,6 +117,31 @@ body {
   height: 16px;
 }
 
+.show-data-btn {
+  position: absolute;
+  bottom: 0;
+  z-index: 10000;
+
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 20px;
+
+  font-family: inherit;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.show-data-btn.hide {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(100%);
+}
+
 .data {
   display: flex;
   flex-direction: column;
@@ -118,12 +155,23 @@ body {
   text-align: center;
   border-radius: 16px;
   list-style-type: none;
+  transition: all 0.2s ease;
 }
 
 .data-item {
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+
+.data-item b {
+  color: hsl(0, 0%, 17%);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.data-item b.hidden {
+  visibility: hidden;
 }
 
 .data-subtitle {
@@ -135,18 +183,27 @@ body {
   text-transform: uppercase;
 }
 
-.data-ip,
-.data-location,
-.data-timezone,
-.data-isp {
-  color: hsl(0, 0%, 17%);
-  font-size: 20px;
-  font-weight: 700;
+@media (min-width: 768px) {
+  .form,
+  .data {
+    width: 60%;
+  }
 }
 
-.data-ip.hidden,
-.data-location.hidden,
-.data-timezone.hidden,
-.data-isp.hidden {
-  visibility: hidden;
+@media (min-width: 1024px) {
+  .form {
+    width: 50%;
+  }
+
+  .data {
+    width: 75%;
+    flex-direction: row;
+    justify-content: space-evenly;
+    text-align: left;
+  }
+
+  .data-item.left-border {
+    border-left: 1px solid hsl(0, 0%, 59%);
+    padding-left: 20px;
+  }
 }

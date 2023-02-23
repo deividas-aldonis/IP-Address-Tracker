@@ -11,11 +11,34 @@ let mapIcon = L.icon({
   iconSize: [30, 40],
 });
 
+const mapDiv = document.getElementById("map");
+const data = document.querySelector(".content");
+const showBtn = document.querySelector(".show-data-btn");
+
+const displayData = (e) => {
+  if (!data.classList.contains("hide")) {
+    data.classList.add("hide");
+    showBtn.textContent = "show data";
+  } else {
+    data.classList.remove("hide");
+    showBtn.textContent = "hide data";
+  }
+};
+
+const resizeObserver = new ResizeObserver(() => {
+  if (!map) return;
+  map.invalidateSize();
+});
+
+resizeObserver.observe(mapDiv);
+
+showBtn.addEventListener("click", displayData);
+
 const showOnMap = (lat, lon) => {
   if (!map) {
     map = L.map("map", { zoomControl: false }).setView([lat, lon], 13);
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 20,
+      maxZoom: 19,
       attribution:
         '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
