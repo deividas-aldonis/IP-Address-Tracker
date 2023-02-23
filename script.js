@@ -19,7 +19,7 @@ const content = document.querySelector(".content");
 
 const adjustContentSize = () => {
   const contentHeight = content.offsetHeight - data.offsetHeight / 2;
-  console.log(contentHeight);
+  content.style.height = contentHeight + "px";
 };
 adjustContentSize();
 

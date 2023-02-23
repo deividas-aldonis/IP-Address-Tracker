@@ -49,16 +49,17 @@ body {
   background-size: cover;
   background-position: center;
 
-  height: 100%;
   opacity: 1;
+  visibility: visible;
   overflow: visible;
-  transition: opacity 0.25s ease-in 0.25s, height 0.25s ease-out;
+  transition: all 0.2s ease;
 }
 
 .content.hide {
-  height: 0;
+  visibility: hidden;
+  height: 0 !important;
   opacity: 0;
-  transition: opacity 0.25s ease-out, height 0.3s ease-out 0.25s;
+  transition: all 0.2s ease-out;
 }
 
 .content > * {
@@ -199,14 +200,28 @@ body {
 
   .data {
     width: 90%;
-    padding: 25px 15px;
+    padding: 25px;
     flex-direction: row;
-    justify-content: space-around;
     text-align: left;
+  }
+
+  .data-item {
+    flex: 1;
   }
 
   .data-item.left-border {
     border-left: 1px solid hsl(0, 0%, 59%);
     padding-left: 20px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .form {
+    width: 40%;
+    margin-bottom: 50px;
+  }
+
+  .data {
+    width: 70%;
   }
 }
