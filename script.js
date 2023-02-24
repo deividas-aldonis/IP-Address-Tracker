@@ -6,56 +6,15 @@ const locationEl = document.querySelector(".data-location");
 const timezoneEl = document.querySelector(".data-timezone");
 const header = document.querySelector(".header");
 
-let map;
-let mapIcon = L.icon({
-  iconUrl: "./images/icon-location.svg",
-  iconSize: [30, 40],
-});
-
 const mapDiv = document.getElementById("map");
 const data = document.querySelector(".data");
 const content = document.querySelector(".content");
 const goUp = document.querySelector(".go-up");
 
-const adjustContentSize = () => {
-  const contentHeight = content.offsetHeight - data.offsetHeight / 2;
-  content.style.height = contentHeight + "px";
-};
-adjustContentSize();
-
-const resizeObserver = new ResizeObserver(() => {
-  if (!map) return;
-  map.invalidateSize();
-});
-resizeObserver.observe(mapDiv);
-
-const headerObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    const intersecting = entry.isIntersecting;
-
-    if (intersecting && !goUp.classList.contains("hide")) {
-      goUp.classList.add("hide");
-    }
-  });
-});
-
-headerObserver.observe(header);
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    const intersecting = entry.isIntersecting;
-    if (intersecting) {
-      goUp.classList.remove("hide");
-    }
-  });
-});
-
-goUp.addEventListener("click", () => {
-  window.scroll({
-    top: 0,
-    left: 0,
-    behavior: "smooth",
-  });
+let map;
+let mapIcon = L.icon({
+  iconUrl: "./images/icon-location.svg",
+  iconSize: [30, 40],
 });
 
 const showOnMap = (lat, lon) => {
@@ -71,8 +30,6 @@ const showOnMap = (lat, lon) => {
     map.setView([lat, lon], 13);
     L.marker([lat, lon], { icon: mapIcon }).addTo(map);
   }
-
-  observer.observe(document.querySelector(".leaflet-control-attribution"));
 };
 
 const getCoords = async (userInput) => {
@@ -108,7 +65,7 @@ const getCoords = async (userInput) => {
     formInput.value = "";
   } catch (error) {
     console.error(error);
-    alert("An error occurred, please try again later.");
+    alert(`An error occurred\n${error}`);
   }
 };
 
@@ -116,10 +73,45 @@ submitBtn.addEventListener("click", (e) => {
   e.preventDefault();
 
   const inputValue = formInput.value.trim();
-
   if (inputValue.length < 1) return;
 
   getCoords(inputValue);
 });
 
-window.addEventListener("load", () => getCoords());
+const adjustContentSize = () => {
+  const { top, height } = data.getBoundingClientRect();
+  const elDistanceToTop = window.pageYOffset + top;
+  const contentHeight = elDistanceToTop + height / 2;
+
+  content.style.height = contentHeight + "px";
+};
+
+const resizeObserver = new ResizeObserver(() => {
+  adjustContentSize();
+  showUpBtn();
+});
+
+goUp.addEventListener("click", () => {
+  window.scroll({
+    top: 0,
+    left: 0,
+    behavior: "smooth",
+  });
+});
+
+const showUpBtn = () => {
+  const { y, height } = header.getBoundingClientRect();
+
+  if (y + height <= 0) {
+    goUp.classList.remove("hide");
+  } else {
+    goUp.classList.add("hide");
+  }
+};
+window.addEventListener("scroll", showUpBtn);
+
+window.addEventListener("load", () => {
+  adjustContentSize();
+  getCoords();
+  resizeObserver.observe(document.body);
+});
