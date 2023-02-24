@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- displays site properly based on user's device -->
+    <title>Frontend Mentor | IP Address Tracker</title>
 
     <link
       rel="icon"
@@ -17,17 +17,13 @@
       integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
       crossorigin=""
     />
+    <link rel="stylesheet" href="style.css" />
 
     <script
       src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
       integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
       crossorigin=""
     ></script>
-
-    <title>Frontend Mentor | IP Address Tracker</title>
-
-    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-    <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
   </head>
   <body>
@@ -48,28 +44,30 @@
 
         <ul class="data">
           <li class="data-item">
-            <p class="data-subtitle">IP ADDRESS</p>
-            <b class="data-ip hidden">192.212.174.101</b>
+            <p class="data-item-title">IP ADDRESS</p>
+            <b class="data-item-content data-ip hidden">&nbsp;</b>
           </li>
           <li class="data-item left-border">
-            <p class="data-subtitle">LOCATION</p>
-            <b class="data-location hidden">Brooklyn, NY 10001</b>
+            <p class="data-item-title">LOCATION</p>
+            <b class="data-item-content data-location hidden">&nbsp;</b>
           </li>
           <li class="data-item left-border">
-            <p class="data-subtitle">TIMEZONE</p>
-            <b class="data-timezone hidden">UTC -05:00</b>
+            <p class="data-item-title">TIMEZONE</p>
+            <b class="data-item-content data-timezone hidden">&nbsp;</b>
           </li>
           <li class="data-item left-border">
-            <p class="data-subtitle">ISP</p>
-            <b class="data-isp hidden">SpaceX Starlink</b>
+            <p class="data-item-title">ISP</p>
+            <b class="data-item-content data-isp hidden">&nbsp;</b>
           </li>
         </ul>
       </div>
+
       <button class="go-up hide">
         <svg xmlns="http://www.w3.org/2000/svg" width="11" height="14">
           <path fill="none" stroke="#FFF" stroke-width="3" d="M2 1l6 6-6 6" />
         </svg>
       </button>
+
       <div id="map"></div>
     </main>
   </body>

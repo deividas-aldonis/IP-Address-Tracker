@@ -49,10 +49,15 @@ const getCoords = async (userInput) => {
 
     const { ip, city, country, postal, utc_offset, org, latitude, longitude } =
       data;
-    const utc = utc_offset.slice(0, 3) + ":" + utc_offset.slice(3);
+
+    let utc;
+    if (utc_offset) {
+      utc = utc_offset.slice(0, 3) + ":" + utc_offset.slice(3);
+    }
 
     ipEl.textContent = ip;
     ispEl.textContent = org;
+
     locationEl.textContent = `${city}, ${country} ${postal}`;
     timezoneEl.textContent = `UTC ${utc}`;
 
@@ -64,19 +69,9 @@ const getCoords = async (userInput) => {
     showOnMap(latitude, longitude);
     formInput.value = "";
   } catch (error) {
-    console.error(error);
     alert(`An error occurred\n${error}`);
   }
 };
-
-submitBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-
-  const inputValue = formInput.value.trim();
-  if (inputValue.length < 1) return;
-
-  getCoords(inputValue);
-});
 
 const adjustContentSize = () => {
   const { top, height } = data.getBoundingClientRect();
@@ -89,15 +84,18 @@ const adjustContentSize = () => {
 const resizeObserver = new ResizeObserver(() => {
   adjustContentSize();
   showUpBtn();
+
+  if (!map) return;
+  map.invalidateSize();
 });
 
-goUp.addEventListener("click", () => {
+const scrollTop = () => {
   window.scroll({
     top: 0,
     left: 0,
     behavior: "smooth",
   });
-});
+};
 
 const showUpBtn = () => {
   const { y, height } = header.getBoundingClientRect();
@@ -108,8 +106,16 @@ const showUpBtn = () => {
     goUp.classList.add("hide");
   }
 };
-window.addEventListener("scroll", showUpBtn);
 
+submitBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  const inputValue = formInput.value.trim();
+
+  getCoords(inputValue);
+});
+
+goUp.addEventListener("click", scrollTop);
+window.addEventListener("scroll", showUpBtn);
 window.addEventListener("load", () => {
   adjustContentSize();
   getCoords();

@@ -5,17 +5,17 @@
 }
 
 @font-face {
-  font-family: "R";
+  font-family: "Rubik";
   src: url("./fonts/Rubik-Regular.woff2");
   font-weight: 400;
 }
 @font-face {
-  font-family: "R";
+  font-family: "Rubik";
   src: url("./fonts/Rubik-Medium.woff2");
   font-weight: 500;
 }
 @font-face {
-  font-family: "R";
+  font-family: "Rubik";
   src: url("./fonts/Rubik-Bold.woff2");
   font-weight: 700;
 }
@@ -26,7 +26,7 @@ body {
 }
 
 body {
-  font-family: "R";
+  font-family: "Rubik", sans-serif;
 }
 
 .container {
@@ -83,13 +83,6 @@ body {
   outline-color: transparent;
 }
 
-.form-input::placeholder {
-  width: 100px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 .submit-btn {
   display: flex;
   justify-content: center;
@@ -98,7 +91,7 @@ body {
   width: 70px;
   height: 60px;
   border: none;
-  background-color: black;
+  background-color: hsl(0, 0%, 0%);
   cursor: pointer;
 }
 
@@ -124,7 +117,7 @@ body {
   width: 55px;
   height: 55px;
 
-  color: #fff;
+  color: hsl(0, 0%, 100%);
   background-color: black;
 
   font-weight: 700;
@@ -152,7 +145,7 @@ body {
   gap: 24px;
 
   padding: 25px 0;
-  background-color: #fff;
+  background-color: hsl(0, 0%, 100%);
 
   opacity: 1;
   text-align: center;
@@ -173,17 +166,17 @@ body {
   gap: 8px;
 }
 
-.data-item b {
+.data-item-content {
   color: hsl(0, 0%, 17%);
   font-size: 20px;
   font-weight: 700;
 }
 
-.data-item b.hidden {
+.data-item-content.hidden {
   visibility: hidden;
 }
 
-.data-subtitle {
+.data-item-title {
   color: hsl(0, 0%, 59%);
   font-size: 11px;
   font-weight: 700;
@@ -220,7 +213,7 @@ body {
   }
 
   .data-item.left-border {
-    border-left: 1px solid hsl(0, 0%, 59%);
+    border-left: 1px solid hsl(0deg 0% 83%);
     padding-left: 20px;
   }
 }
